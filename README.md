@@ -162,11 +162,8 @@ Das veröffentlichte Image ziehen und starten:
 ```bash
 docker run -d -p 8088:80 \
   -v "$(pwd)/data:/usr/share/nginx/html/data:ro" \
-  ghcr.io/<owner>/xgallery:latest
+  ghcr.io/mprzybilla/xgallery:latest
 ```
-
-> Hinweis: Damit das Image öffentlich ziehbar ist, ggf. einmalig unter
-> *GitHub → Packages → xgallery → Package settings* die Sichtbarkeit auf *public* stellen.
 
 ## Projektstruktur
 
@@ -183,16 +180,6 @@ src/app/
 │   └── catalog.service.ts # lädt & sortiert den Katalog
 └── models/                # TypeScript-Interfaces
 ```
-
-## Hinweise
-
-Die mitgelieferten Beispieldaten (Namen, Impressum, Datenschutztexte) sind **Platzhalter**
-und keine Rechtsberatung. Vor einem öffentlichen Betrieb solltest du Impressum und
-Datenschutzerklärung an deine Situation anpassen und ggf. rechtlich prüfen lassen – das gilt
-insbesondere, wenn auf den Fotos Personen erkennbar sind.
-
-Die MIT-Lizenz bezieht sich auf den **Quellcode dieser Anwendung**, nicht auf die mit ihr
-präsentierten Fotos – deren Rechte regelst du separat (siehe `license`-Feld je Bild).
 
 ## Lizenz
 
