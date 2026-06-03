@@ -1,9 +1,6 @@
 # XGallery
 
-Eine schlanke, responsive Foto-Galerie als **Angular**-Single-Page-App, gestaltet mit
-**Bootstrap**. Die Anwendung speist sich vollständig aus statischen JSON-Dateien und
-Bildern und lässt sich als statisches Bundle hinter einem beliebigen Webserver
-ausliefern – mitgeliefert wird ein **NGINX-Docker-Setup**.
+Eine schlanke, responsive Foto-Galerie als **Angular**-Single-Page-App, gestaltet mit **Bootstrap**. Die Anwendung speist sich vollständig aus statischen JSON-Dateien und Bildern und lässt sich als statisches Bundle hinter einem beliebigen Webserver ausliefern – mitgeliefert wird ein **NGINX-Docker-Setup**.
 
 ## Features
 
