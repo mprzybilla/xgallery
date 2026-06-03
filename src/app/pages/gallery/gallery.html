@@ -11,7 +11,7 @@
 } @else {
   <!-- Steuerleiste: Sortierung + Trefferzahl -->
   <div class="filter-bar d-flex flex-wrap align-items-center gap-2 p-2 border-bottom">
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="toggleSort()">
+    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleSort()">
       @if (sortDesc()) {
         ↓ Neueste zuerst
       } @else {
@@ -27,8 +27,8 @@
       <button
         type="button"
         class="btn btn-sm"
-        [class.btn-dark]="selectedTags().length === 0"
-        [class.btn-outline-dark]="selectedTags().length > 0"
+        [class.btn-secondary]="selectedTags().length === 0"
+        [class.btn-outline-secondary]="selectedTags().length > 0"
         (click)="clearTags()"
       >
         Alle

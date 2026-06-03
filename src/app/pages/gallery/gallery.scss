@@ -6,7 +6,7 @@
   position: sticky;
   top: 56px; /* unterhalb der Navbar */
   z-index: 1020;
-  background-color: #fff;
+  background-color: var(--bs-body-bg);
 }
 
 /* Tag-Leiste scrollt mit (nicht zusätzlich sticky, sonst Überlappung). */
@@ -34,7 +34,7 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background-color: #e9ecef;
+  background-color: var(--bs-tertiary-bg);
   text-decoration: none;
   border: 0;
   padding: 0;

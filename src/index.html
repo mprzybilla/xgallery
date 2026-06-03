@@ -5,7 +5,19 @@
     <title>Xgallery</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script>
+      // Bootstrap-Theme an Browser-Einstellung koppeln (vor App-Render, kein FOUC).
+      (function () {
+        var mql = window.matchMedia('(prefers-color-scheme: dark)');
+        var apply = function (dark) {
+          document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
+        };
+        apply(mql.matches);
+        mql.addEventListener('change', function (e) { apply(e.matches); });
+      })();
+    </script>
   </head>
   <body>
     <app-root></app-root>
