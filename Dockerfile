@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 # ---------- Runtime-Stage (NGINX) ----------
-FROM nginx:1.27-alpine AS runtime
+FROM nginx:1.31-alpine AS runtime
 
 # Eigene Server-Konfiguration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
