@@ -1,0 +1,14 @@
+services:
+  xgallery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: xgallery:latest
+    container_name: xgallery
+    ports:
+      - "8088:80"
+    volumes:
+      # Statische Daten (config.json, catalog.json, Bilder) read-only einhängen.
+      # Überlagert den ins Image gebauten /data-Ordner — austauschbar ohne Rebuild.
+      - ./data:/usr/share/nginx/html/data:ro
+    restart: unless-stopped

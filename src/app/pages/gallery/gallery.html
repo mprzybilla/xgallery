@@ -1,0 +1,81 @@
+@if (catalog.loading()) {
+  <div class="d-flex justify-content-center py-5">
+    <div class="spinner-border text-secondary" role="status">
+      <span class="visually-hidden">Lädt…</span>
+    </div>
+  </div>
+} @else if (catalog.error()) {
+  <div class="alert alert-danger m-3" role="alert">{{ catalog.error() }}</div>
+} @else if (catalog.photos().length === 0) {
+  <div class="alert alert-info m-3" role="alert">Keine Bilder im Katalog gefunden.</div>
+} @else {
+  <!-- Steuerleiste: Sortierung + Trefferzahl -->
+  <div class="filter-bar d-flex flex-wrap align-items-center gap-2 p-2 border-bottom">
+    <button type="button" class="btn btn-sm btn-outline-dark" (click)="toggleSort()">
+      @if (sortDesc()) {
+        ↓ Neueste zuerst
+      } @else {
+        ↑ Älteste zuerst
+      }
+    </button>
+    <span class="ms-auto text-muted small">{{ filtered().length }} Bild(er)</span>
+  </div>
+
+  <!-- Tag-Filter -->
+  @if (allTags().length) {
+    <div class="filter-bar filter-bar--tags d-flex flex-wrap align-items-center gap-2 p-2 border-bottom">
+      <button
+        type="button"
+        class="btn btn-sm"
+        [class.btn-dark]="selectedTags().length === 0"
+        [class.btn-outline-dark]="selectedTags().length > 0"
+        (click)="clearTags()"
+      >
+        Alle
+      </button>
+      @for (tag of allTags(); track tag) {
+        <button
+          type="button"
+          class="btn btn-sm"
+          [class.btn-primary]="selectedTags().includes(tag)"
+          [class.btn-outline-secondary]="!selectedTags().includes(tag)"
+          (click)="toggleTag(tag)"
+        >
+          {{ tag }}
+        </button>
+      }
+    </div>
+  }
+
+  @if (filtered().length === 0) {
+    <div class="alert alert-info m-3" role="alert">Keine Bilder für die gewählten Tags.</div>
+  } @else {
+    <div class="photo-grid">
+      @for (photo of visible(); track photo.id; let i = $index) {
+        <button type="button" class="photo-tile" [title]="photo.title" (click)="openLightbox(i)">
+          <img [src]="catalog.imageUrl(photo.id, 'xs')" [alt]="photo.title" loading="lazy" />
+          <span class="photo-tile__caption">{{ photo.title }}</span>
+        </button>
+      }
+    </div>
+
+    <!-- Sentinel für Infinite-Scroll -->
+    @if (visible().length < filtered().length) {
+      <div #sentinel class="d-flex justify-content-center py-4">
+        <div class="spinner-border spinner-border-sm text-secondary" role="status">
+          <span class="visually-hidden">Mehr laden…</span>
+        </div>
+      </div>
+    }
+  }
+
+  <!-- Vollbild-Lightbox -->
+  @if (lightboxIndex() !== null) {
+    <app-lightbox
+      [photos]="filtered()"
+      [index]="lightboxIndex()!"
+      (indexChange)="lightboxIndex.set($event)"
+      (closed)="closeLightbox()"
+    />
+  }
+}

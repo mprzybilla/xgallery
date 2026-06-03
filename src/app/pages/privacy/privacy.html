@@ -1,0 +1,20 @@
+<div class="container py-4" style="max-width: 720px;">
+  <a class="btn btn-outline-secondary btn-sm mb-3" routerLink="/">&larr; Zurück zur Übersicht</a>
+
+  <h1 class="h3 mb-4">Datenschutzerklärung</h1>
+
+  @if (privacy(); as pv) {
+    @if (pv.intro) {
+      <p class="mb-4" style="white-space: pre-line;">{{ pv.intro }}</p>
+    }
+
+    @for (section of pv.sections; track section.title) {
+      <h2 class="h6 mt-4">{{ section.title }}</h2>
+      <p style="white-space: pre-line;">{{ section.content }}</p>
+    }
+  } @else {
+    <div class="alert alert-warning" role="alert">
+      Es ist keine Datenschutzerklärung konfiguriert.
+    </div>
+  }
+</div>

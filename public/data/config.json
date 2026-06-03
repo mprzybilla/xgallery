@@ -1,0 +1,40 @@
+{
+  "appTitle": "XGallery",
+  "imageCatalog": "/data/catalog.json",
+  "imprint": {
+    "enabled": true,
+    "isPrivate": true,
+    "provider": "Max Mustermann",
+    "address": {
+      "street": "Musterstraße 1",
+      "zip": "12345",
+      "city": "Musterstadt",
+      "country": "Deutschland"
+    },
+    "email": "kontakt@example.com",
+    "phone": "+49 123 4567890",
+    "responsible": "Max Mustermann, Anschrift wie oben"
+  },
+  "privacy": {
+    "enabled": true,
+    "intro": "Diese Seite präsentiert private Fotos. Der Schutz Ihrer personenbezogenen Daten ist mir wichtig. Nachfolgend informiere ich darüber, welche Daten beim Besuch dieser Website verarbeitet werden.",
+    "sections": [
+      {
+        "title": "Verantwortlicher",
+        "content": "Max Mustermann\nMusterstraße 1\n12345 Musterstadt\nE-Mail: kontakt@example.com"
+      },
+      {
+        "title": "Server-Logfiles",
+        "content": "Beim Aufruf dieser Website werden durch den Hosting-Provider automatisch Informationen in sogenannten Server-Logfiles gespeichert, die Ihr Browser übermittelt: IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite/Datei, verwendeter Browser und Betriebssystem. Diese Daten dienen ausschließlich dem sicheren und stabilen Betrieb der Website (Art. 6 Abs. 1 lit. f DSGVO) und werden nach kurzer Zeit gelöscht."
+      },
+      {
+        "title": "Cookies und Tracking",
+        "content": "Diese Website setzt keine Cookies und verwendet keine Analyse- oder Tracking-Dienste."
+      },
+      {
+        "title": "Ihre Rechte",
+        "content": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten sowie ein Widerspruchsrecht und das Recht auf Datenübertragbarkeit. Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde beschweren. Wenden Sie sich dazu an die oben genannte Kontaktadresse."
+      }
+    ]
+  }
+}

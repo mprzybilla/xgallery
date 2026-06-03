@@ -1,0 +1,93 @@
+<div class="container-fluid py-3">
+  <a
+    class="btn btn-outline-secondary btn-sm mb-3"
+    routerLink="/"
+    queryParamsHandling="preserve"
+    >&larr; Zurück zur Übersicht</a
+  >
+
+  @if (catalog.loading()) {
+    <div class="d-flex justify-content-center py-5">
+      <div class="spinner-border text-secondary" role="status">
+        <span class="visually-hidden">Lädt…</span>
+      </div>
+    </div>
+  } @else if (photo(); as p) {
+    <div class="row g-4">
+      <div class="col-12 col-lg-8">
+        <img [src]="fullUrl()" [alt]="p.title" class="img-fluid rounded shadow-sm w-100" />
+      </div>
+      <div class="col-12 col-lg-4">
+        <h1 class="h3">{{ p.title }}</h1>
+
+        <dl class="row mt-3 mb-0">
+          <dt class="col-4 text-muted">Erstellt</dt>
+          <dd class="col-8">{{ p.Created | date: 'medium' }}</dd>
+
+          <dt class="col-4 text-muted">Auflösung</dt>
+          <dd class="col-8">{{ p.resolution }}</dd>
+
+          @if (p.author) {
+            <dt class="col-4 text-muted">Autor</dt>
+            <dd class="col-8">{{ p.author }}</dd>
+          }
+
+          @if (p.license) {
+            <dt class="col-4 text-muted">Lizenz</dt>
+            <dd class="col-8">{{ p.license }}</dd>
+          }
+
+          <dt class="col-4 text-muted">ID</dt>
+          <dd class="col-8"><code>{{ p.id }}</code></dd>
+        </dl>
+
+        @if (p.tags.length) {
+          <div class="mb-3">
+            @for (tag of p.tags; track tag) {
+              <a
+                class="badge text-bg-secondary text-decoration-none me-1 mb-1"
+                routerLink="/"
+                [queryParams]="{ tags: tag }"
+                >{{ tag }}</a
+              >
+            }
+          </div>
+        }
+
+        <div class="d-grid gap-2 d-sm-flex">
+          <a class="btn btn-primary" [href]="fullUrl()" [download]="p.id + '_full.jpg'">
+            Volle Größe herunterladen
+          </a>
+          <a class="btn btn-outline-primary" [href]="fullUrl()" target="_blank" rel="noopener">
+            In neuem Tab öffnen
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ähnliche Bilder pro Tag -->
+    @for (group of related(); track group.tag) {
+      <section class="mt-5">
+        <h2 class="h5 mb-3">
+          Passend zu
+          <a
+            class="badge text-bg-secondary text-decoration-none"
+            routerLink="/"
+            [queryParams]="{ tags: group.tag }"
+            >{{ group.tag }}</a
+          >
+        </h2>
+        <div class="related-row">
+          @for (rel of group.photos; track rel.id) {
+            <a class="related-thumb" [routerLink]="['/photo', rel.id]" [title]="rel.title">
+              <img [src]="catalog.imageUrl(rel.id, 'xs')" [alt]="rel.title" loading="lazy" />
+              <span class="related-thumb__caption">{{ rel.title }}</span>
+            </a>
+          }
+        </div>
+      </section>
+    }
+  } @else {
+    <div class="alert alert-warning" role="alert">Bild nicht gefunden.</div>
+  }
+</div>

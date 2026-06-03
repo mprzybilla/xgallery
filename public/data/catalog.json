@@ -1,0 +1,58 @@
+{
+  "catalog": [
+    {
+      "id": "mittenwald",
+      "title": "Mittenwald",
+      "tags": ["berge", "alpen", "winter"],
+      "Created": "2024-08-12T14:30:00Z",
+      "resolution": "600x800px",
+      "author": "Max Mustermann",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "seeblick",
+      "title": "Seeblick am Morgen",
+      "tags": ["see", "natur", "sonnenaufgang"],
+      "Created": "2024-09-03T06:15:00Z",
+      "resolution": "800x600px",
+      "author": "Max Mustermann",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "id": "altstadt",
+      "title": "Altstadtgasse",
+      "tags": ["stadt", "architektur"],
+      "Created": "2024-06-21T18:45:00Z",
+      "resolution": "600x800px",
+      "author": "Erika Musterfrau",
+      "license": "CC0 1.0"
+    },
+    {
+      "id": "wald",
+      "title": "Nebelwald",
+      "tags": ["wald", "natur", "nebel"],
+      "Created": "2024-11-09T08:00:00Z",
+      "resolution": "800x600px",
+      "author": "Erika Musterfrau",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "kueste",
+      "title": "Steilküste",
+      "tags": ["meer", "natur", "küste"],
+      "Created": "2024-07-30T16:20:00Z",
+      "resolution": "800x600px",
+      "author": "Max Mustermann",
+      "license": "All rights reserved"
+    },
+    {
+      "id": "winter",
+      "title": "Verschneiter Pfad",
+      "tags": ["winter", "schnee", "berge"],
+      "Created": "2025-01-15T10:05:00Z",
+      "resolution": "600x800px",
+      "author": "Erika Musterfrau",
+      "license": "CC BY-NC 4.0"
+    }
+  ]
+}

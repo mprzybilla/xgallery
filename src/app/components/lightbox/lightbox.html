@@ -1,0 +1,51 @@
+@if (current(); as p) {
+  <div class="lightbox" (click)="close()">
+    <!-- Schließen -->
+    <button type="button" class="lightbox__btn lightbox__close" (click)="close()" aria-label="Schließen">
+      &times;
+    </button>
+
+    <!-- Zurück -->
+    @if (photos().length > 1) {
+      <button
+        type="button"
+        class="lightbox__btn lightbox__nav lightbox__nav--prev"
+        (click)="$event.stopPropagation(); prev()"
+        aria-label="Vorheriges Bild"
+      >
+        &lsaquo;
+      </button>
+    }
+
+    <!-- Bild + Beschriftung; Klick auf den Inhalt schließt nicht -->
+    <figure class="lightbox__content" (click)="$event.stopPropagation()">
+      <img [src]="fullUrl()" [alt]="p.title" class="lightbox__img" />
+      <figcaption class="lightbox__caption">
+        <span class="fw-semibold">{{ p.title }}</span>
+        <a
+          class="btn btn-sm btn-light ms-3"
+          [routerLink]="['/photo', p.id]"
+          queryParamsHandling="preserve"
+          (click)="close()"
+        >
+          Details anzeigen
+        </a>
+        <a class="btn btn-sm btn-outline-light ms-2" [href]="fullUrl()" [download]="p.id + '_full.jpg'">
+          Herunterladen
+        </a>
+      </figcaption>
+    </figure>
+
+    <!-- Weiter -->
+    @if (photos().length > 1) {
+      <button
+        type="button"
+        class="lightbox__btn lightbox__nav lightbox__nav--next"
+        (click)="$event.stopPropagation(); next()"
+        aria-label="Nächstes Bild"
+      >
+        &rsaquo;
+      </button>
+    }
+  </div>
+}

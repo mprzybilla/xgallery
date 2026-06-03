@@ -1,0 +1,54 @@
+<div class="container py-4" style="max-width: 720px;">
+  <a class="btn btn-outline-secondary btn-sm mb-3" routerLink="/">&larr; Zurück zur Übersicht</a>
+
+  <h1 class="h3 mb-4">Impressum</h1>
+
+  @if (imprint(); as im) {
+    <h2 class="h6 text-muted">
+      @if (im.isPrivate) {
+        Verantwortlich für den Inhalt dieser Website
+      } @else {
+        Angaben gemäß § 5 DDG
+      }
+    </h2>
+    <address class="mb-4">
+      <strong>{{ im.provider }}</strong><br />
+      {{ im.address.street }}<br />
+      {{ im.address.zip }} {{ im.address.city }}
+      @if (im.address.country) {
+        <br />{{ im.address.country }}
+      }
+    </address>
+
+    @if (im.representedBy) {
+      <h2 class="h6 text-muted">Vertreten durch</h2>
+      <p class="mb-4">{{ im.representedBy }}</p>
+    }
+
+    <h2 class="h6 text-muted">Kontakt</h2>
+    <p class="mb-4">
+      E-Mail: <a [href]="'mailto:' + im.email">{{ im.email }}</a>
+      @if (im.phone) {
+        <br />Telefon: <a [href]="'tel:' + im.phone">{{ im.phone }}</a>
+      }
+    </p>
+
+    @if (im.vatId) {
+      <h2 class="h6 text-muted">Umsatzsteuer-ID</h2>
+      <p class="mb-4">{{ im.vatId }}</p>
+    }
+
+    @if (im.responsible) {
+      <h2 class="h6 text-muted">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <p class="mb-4">{{ im.responsible }}</p>
+    }
+
+    @if (im.additional) {
+      <p class="text-muted" style="white-space: pre-line;">{{ im.additional }}</p>
+    }
+  } @else {
+    <div class="alert alert-warning" role="alert">
+      Es sind keine Impressums-Angaben konfiguriert.
+    </div>
+  }
+</div>

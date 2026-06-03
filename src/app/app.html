@@ -1,0 +1,23 @@
+<nav class="navbar navbar-dark bg-dark sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand mb-0 h1" routerLink="/">{{ appTitle() }}</a>
+  </div>
+</nav>
+
+<main>
+  <router-outlet />
+</main>
+
+@if (hasFooter()) {
+  <footer class="border-top py-3 mt-4 text-center text-muted small">
+    @if (hasImprint()) {
+      <a class="link-secondary text-decoration-none" routerLink="/impressum">Impressum</a>
+    }
+    @if (hasImprint() && hasPrivacy()) {
+      <span class="mx-2">·</span>
+    }
+    @if (hasPrivacy()) {
+      <a class="link-secondary text-decoration-none" routerLink="/datenschutz">Datenschutz</a>
+    }
+  </footer>
+}
