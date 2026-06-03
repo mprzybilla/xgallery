@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: xgallery:latest
+    image: ghcr.io/mprzybilla/xgallery:latest
     container_name: xgallery
     ports:
       - "8088:80"
