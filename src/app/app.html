@@ -1,6 +1,9 @@
 <nav class="navbar bg-body-tertiary border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand mb-0 h1" routerLink="/">{{ appTitle() }}</a>
+    <a class="navbar-brand mb-0 h1 d-flex align-items-center gap-2" routerLink="/">
+      <img src="favicon.ico" alt="" width="24" height="24" />
+      <span>{{ appTitle() }}</span>
+    </a>
     @if (editMode.enabled()) {
       <button
         type="button"
