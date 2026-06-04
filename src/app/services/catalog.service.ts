@@ -47,6 +47,18 @@ export class CatalogService {
     return this.photos().find((p) => p.id === id);
   }
 
+  /** Aktualisiert ein Foto in-memory (Edit-Modus). Persistenz erfolgt über Download. */
+  updatePhoto(id: string, patch: Partial<PhotoItem>): void {
+    this.photos.update((list) =>
+      list.map((p) => (p.id === id ? { ...p, ...patch } : p)),
+    );
+  }
+
+  /** Serialisiert den aktuellen Katalog im Format der catalog.json. */
+  toCatalogJson(): string {
+    return JSON.stringify({ catalog: this.photos() }, null, 2) + '\n';
+  }
+
   /** Baut den Pfad zu einer Bildausprägung: /data/<id>_<variant>.jpg */
   imageUrl(id: string, variant: 'xs' | 'full'): string {
     return `data/${id}_${variant}.jpg`;

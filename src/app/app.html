@@ -1,6 +1,16 @@
 <nav class="navbar bg-body-tertiary border-bottom sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand mb-0 h1" routerLink="/">{{ appTitle() }}</a>
+    @if (editMode.enabled()) {
+      <button
+        type="button"
+        class="btn btn-sm btn-primary ms-auto"
+        (click)="downloadCatalog()"
+        title="Aktuellen Katalog als catalog.json speichern"
+      >
+        catalog.json herunterladen
+      </button>
+    }
   </div>
 </nav>
 

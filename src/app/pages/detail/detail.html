@@ -62,6 +62,62 @@
             In neuem Tab öffnen
           </a>
         </div>
+
+        @if (editMode.enabled()) {
+          <form class="mt-4 p-3 border rounded bg-body-tertiary" (submit)="$event.preventDefault()">
+            <h2 class="h6 text-uppercase text-muted mb-3">Bearbeiten</h2>
+
+            <div class="mb-3">
+              <label class="form-label" for="edit-title">Titel</label>
+              <input
+                id="edit-title"
+                type="text"
+                class="form-control"
+                [value]="p.title"
+                (input)="updateTitle($any($event.target).value)"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="edit-tags">Tags (kommagetrennt)</label>
+              <input
+                id="edit-tags"
+                type="text"
+                class="form-control"
+                [value]="tagsText()"
+                (input)="updateTags($any($event.target).value)"
+                placeholder="z.B. Bayern, Mittenwald, Winter"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="edit-author">Autor</label>
+              <input
+                id="edit-author"
+                type="text"
+                class="form-control"
+                [value]="p.author ?? ''"
+                (input)="updateAuthor($any($event.target).value)"
+              />
+            </div>
+
+            <div class="mb-0">
+              <label class="form-label" for="edit-license">Lizenz</label>
+              <input
+                id="edit-license"
+                type="text"
+                class="form-control"
+                [value]="p.license ?? ''"
+                (input)="updateLicense($any($event.target).value)"
+              />
+            </div>
+
+            <p class="form-text mt-2 mb-0">
+              Änderungen werden im Speicher gehalten. Über den Button in der Navigation lädst du
+              die angepasste <code>catalog.json</code> herunter.
+            </p>
+          </form>
+        }
       </div>
     </div>
 

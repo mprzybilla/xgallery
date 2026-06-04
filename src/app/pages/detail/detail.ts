@@ -2,10 +2,13 @@ import { Component, computed, inject, input, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CatalogService } from '../../services/catalog.service';
+import { EditModeService } from '../../services/edit-mode.service';
 
 /**
  * Detailseite eines Bildes: zeigt das Bild groß zusammen mit den Meta-Infos
  * und bietet Buttons zum Herunterladen der vollen Auflösung.
+ * Im Edit-Modus (Cmd/Ctrl+E) erscheint zusätzlich ein Formular zum Anpassen
+ * von Titel, Tags, Autor und Lizenz.
  */
 @Component({
   selector: 'app-detail',
@@ -15,12 +18,36 @@ import { CatalogService } from '../../services/catalog.service';
 })
 export class Detail implements OnInit {
   protected readonly catalog = inject(CatalogService);
+  protected readonly editMode = inject(EditModeService);
 
   /** Route-Parameter :id (per withComponentInputBinding gebunden). */
   readonly id = input.required<string>();
 
   protected readonly photo = computed(() => this.catalog.findById(this.id()));
   protected readonly fullUrl = computed(() => this.catalog.imageUrl(this.id(), 'full'));
+
+  /** Tags als kommagetrennter Text fürs Edit-Formular. */
+  protected readonly tagsText = computed(() => (this.photo()?.tags ?? []).join(', '));
+
+  protected updateTitle(value: string): void {
+    this.catalog.updatePhoto(this.id(), { title: value });
+  }
+
+  protected updateTags(value: string): void {
+    const tags = value
+      .split(',')
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0);
+    this.catalog.updatePhoto(this.id(), { tags });
+  }
+
+  protected updateAuthor(value: string): void {
+    this.catalog.updatePhoto(this.id(), { author: value });
+  }
+
+  protected updateLicense(value: string): void {
+    this.catalog.updatePhoto(this.id(), { license: value });
+  }
 
   /**
    * Pro Tag des aktuellen Bildes die übrigen Bilder mit demselben Tag,
