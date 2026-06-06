@@ -1,3 +1,5 @@
+![XGallery Logo](/public/icon.png)
+
 # XGallery
 
 Eine schlanke, responsive Foto-Galerie SPA. Die Anwendung speist sich vollständig aus statischen JSON-Dateien und Bildern und lässt sich als statisches Bundle hinter einem beliebigen Webserver ausliefern – kann via Docker bereitgestellt werden.
